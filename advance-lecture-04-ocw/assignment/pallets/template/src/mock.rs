@@ -20,6 +20,7 @@ parameter_types! {
 	pub const MaximumBlockLength: u32 = 2 * 1024;
 	pub const AvailableBlockRatio: Perbill = Perbill::from_percent(75);
 }
+
 impl system::Trait for Test {
 	type BaseCallFilter = ();
 	type Origin = Origin;
@@ -48,17 +49,13 @@ impl system::Trait for Test {
 	type SystemWeightInfo = ();
 }
 
-parameter_types! {
-	pub const MaxClaimLength: u32 = 6;
-}
 impl Trait for Test {
 	type Event = ();
-	type MaxClaimLength = MaxClaimLength;
 }
-pub type PoeModule = Module<Test>;
 
-// This function basically just builds a genesis storage key/value store according to
-// our desired mockup.
+pub type TemplateModule = Module<Test>;
+
+// Build genesis storage according to the mock runtime.
 pub fn new_test_ext() -> sp_io::TestExternalities {
 	system::GenesisConfig::default().build_storage::<Test>().unwrap().into()
 }
